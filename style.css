@@ -1,0 +1,215 @@
+/* Google font style */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: url('https://static.vecteezy.com/system/resources/previews/000/117/929/non_2x/vector-starter-pok-mons-i.jpg');
+    background-position: top;
+    background-repeat: repeat;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Header content */
+
+header {
+    background: #f6f6f6;
+    margin: 0 auto;
+    margin-top: 1em;
+    padding: 0;
+    width: 80%;
+    border-radius: 10px;
+    border: 1px solid #000;
+    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.65);
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #f0cd00;
+    font-family: 'Rock Salt', cursive;
+    font-size: 2em;
+    text-shadow: -4px 0  #01478b, 0 4px  #01478b, 4px 0  #01478b, 0 -4px  #01478b;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: auto;
+    width: 200px;
+}
+
+.logo-container > img {
+    height: 100%;
+    width: 100%;
+} 
+
+/* Start quiz */
+
+.start-btn-container {
+    width: 50%;
+    margin: 2em auto;
+}
+
+.start-btn {
+    width: 100%;;
+}
+
+/* Quiz content */
+
+.quiz {
+    background: hsla(0, 0%, 100%, 0.50);
+    width: 70%;
+    padding: 5%;
+    margin: 0 auto;
+    margin-top: 1em;
+    border-radius: 10px;
+    border: 1px solid #000;
+    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.65);
+    display: none;
+}
+
+.question-container, .answer-container {
+    background: #f6f6f6;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #01478b;
+}
+
+.question-container > p {
+    padding: 0 1.5em;
+    font-size: 1.2em;
+}
+
+.question-container {
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.65);
+}
+
+.answer-container {
+    margin-top: 2em;
+    background: none;
+    border: none;
+}
+
+.answer-wrapper-container {
+    width: 100%;
+}
+
+.answer-row, .answer-row-two {
+    width: 100%;
+    padding: 1em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    background: #4b619a;
+    width: 45%;
+    padding: 3em;
+    border-radius: 10px;
+    border: 2px solid #000;
+    outline: none;
+    color: #ffffff;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.65);
+    transition: 0.5s ease;
+    transform: translateY(0px);
+}
+
+/* Footer content */
+
+footer {
+    background: #f6f6f6;
+    margin: 0 auto;
+    margin-top: 1em;
+    padding: 5px 0;
+    width: 80%;
+    border-radius: 10px;
+    border: 1px solid #000;
+    box-shadow: 5px 5px 25px #000;
+}
+
+h2 {
+    font-family: 'Rock Salt', cursive;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+/* Hovers */
+
+button:hover {
+    background: #01478b;
+    color: #000000;
+    border: 2px solid #000000;
+    transition: 0.3s ease;
+    transform: translateY(-5px);
+}
+
+/* Media queries */
+@media only screen and (max-width: 1024px) {
+    
+    .logo-container {
+        width: 150px;
+    }
+    
+    h1 {
+        font-size: 1.5em;
+    }
+    
+    button {
+        padding: 2em;
+        font-size: 1.1em;
+    }
+
+    .question-container > p {
+        font-size: 1.1em;
+    }
+}
+
+@media only screen and (max-width: 830px) {
+    
+    .quiz, header {
+        width: 90%;
+        padding: 15px;
+    }
+
+    header {
+        padding: 0 15px;
+    }
+
+    .logo-container {
+        width: 120px;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    .answer-row {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 1em;        
+        font-size: 0.8em;
+    }
+
+    .question-container > p {
+        font-size: 1em;
+    }
+}
