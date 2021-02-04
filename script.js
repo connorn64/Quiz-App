@@ -102,15 +102,6 @@ function displayQuiz() {
 function fillContents() {
     let answerRowOne = document.querySelector('answer-row');
 
-    function tempTemp() {
-        let tempBtn = document.createElement('button');
-        tempBtn.classList.add('answer');
-        tempBtn.setAttribute('id', 'answer-one');
-        answerRowOne.appendChild(tempBtn);
-        return tempBtn;
-    };
-    tempTemp();
-
     const questionContainer = document.getElementById("question-input");
     const buttonOne = document.getElementById("answer-one");
     const buttonTwo = document.getElementById("answer-two");
