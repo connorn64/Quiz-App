@@ -1,8 +1,8 @@
-let counter = 0;
-let results = 0;
-
 const quizContent = document.getElementById('quiz-content');
 const quizStartBtn = document.getElementById('start-quiz-btn');
+
+let counter = 0;
+let results = 0;
 
 const questions = [
     {
@@ -16,14 +16,14 @@ const questions = [
         correctAnswer: "bulbasaur"
     },
     {
-        question: "Question two here?",
+        question: "Who is the tallest final evolution of a starter Pokemon?",
         answers: {
-            a: "answer one",
-            b: "answer two",
-            c: "answer three",
-            d: "answer four"
+            a: "venusaur",
+            b: "blastoise",
+            c: "charizard",
+            d: "pikachu"
         },
-        correctAnswer: "answer one"
+        correctAnswer: "venusaur"
     },
     {
         question: "Which Pokemon resides in the Distortion world?",
@@ -36,14 +36,14 @@ const questions = [
         correctAnswer: "giratina"
     },
     {
-        question: "Question four here?",
+        question: "Who is \#100 on the Pokedex?",
         answers: {
-            a: "answer one",
-            b: "answer two",
-            c: "answer three",
-            d: "answer four"
+            a: "kangaskhan",
+            b: "haunter",
+            c: "voltorb",
+            d: "mewtwo"
         },
-        correctAnswer: "answer four"
+        correctAnswer: "voltorb"
     },
     {
         question: "Who is Kanto's champion?",
@@ -56,140 +56,122 @@ const questions = [
         correctAnswer: "gary"
     },
     {
-        question: "Who is #01 in the Pokedex?",
+        question: "Who is the tallest Pokemon?",
         answers: {
-            a: "charmander",
-            b: "pikachu",
-            c: "bulbasaur",
-            d: "metapod"
+            a: "onix",
+            b: "gyarados",
+            c: "dragonite",
+            d: "snorlax"
         },
-        correctAnswer: "bulbasaur"
+        correctAnswer: "onix"
     },
     {
-        question: "Who is #01 in the Pokedex?",
+        question: "Which Pokemon can live \"in molten lava of 3,600 degrees\"?",
         answers: {
-            a: "charmander",
-            b: "pikachu",
-            c: "bulbasaur",
-            d: "metapod"
+            a: "rhydon",
+            b: "magmar",
+            c: "golem",
+            d: "moltres"
         },
-        correctAnswer: "bulbasaur"
+        correctAnswer: "rhydon"
     },
     {
-        question: "QUESTION 78?",
+        question: "Grabbing on of Ninetales' tails is said to bring a curse of how many years?",
         answers: {
-            a: "charmander",
-            b: "pikachu",
-            c: "bulbasaur",
-            d: "metapod"
+            a: "9",
+            b: "9000",
+            c: "100",
+            d: "1000"
         },
-        correctAnswer: "bulbasaur"
+        correctAnswer: "1000"
     }
 ];
-
-const totalQuestions = questions.length;
-
-function startQuiz() {
-    displayQuiz();
-    reRunFillContents();
-};
 
 function displayQuiz() {
     quizStartBtn.remove();
     quizContent.style.display = 'block';
-};
+    addContents();
+}
 
-function fillContents() {
-    let answerRowOne = document.querySelector('answer-row');
+function checkQuestions() {
+    counter < questions.length ? addContents() : alert(`End of quiz! ...FOR NOW - Results ${results}/8`);
+}
 
-    const questionContainer = document.getElementById("question-input");
-    const buttonOne = document.getElementById("answer-one");
-    const buttonTwo = document.getElementById("answer-two");
-    const buttonThree = document.getElementById("answer-three");
-    const buttonFour = document.getElementById("answer-four");
+function nextQuestionCorrect (quizContent) {
+    alert('CORRECT! Next question...');
+    results++;
+    counter++;
+    quizContent.innerHTML = '';
+    checkQuestions();
+}
 
-    let currentQuestion = questions[counter].question;
-    let correctAns = questions[counter].correctAnswer;
-    let answerA = questions[counter].answers.a;
-    let answerB = questions[counter].answers.b;
-    let answerC = questions[counter].answers.c;
-    let answerD = questions[counter].answers.d;
+function nextQuestionWrong (quizContent) {
+    alert('INCORRECT! Try the next question...');
+    counter++;
+    quizContent.innerHTML = '';
+    checkQuestions();
+}
 
-    questionContainer.innerText = currentQuestion;
-    buttonOne.innerText = answerA;
-    buttonTwo.innerText = answerB;
-    buttonThree.innerText = answerC;
-    buttonFour.innerText = answerD;
-    
-    buttonOne.addEventListener("click", function() {
-        if (buttonOne.innerText.toLowerCase() === correctAns) {
-            // console.log("correct!");
-            buttonOne.remove();
-            nextQuestion();
-        } else {
-            // console.log("incorrect!");
-            buttonOne.remove();
-            nextQuestion();
-        }
+function addContents() {
+    quizContent.innerHTML = `
+                            <div class="question-container">
+                                <p id="question-input">${questions[counter].question}</p>
+                            </div>
+                            <div class="answer-container">
+                                <div class="answer-wrapper-container">
+                                    <div class="answer-row">
+                                        <button class="answer" id="answer-one">${questions[counter].answers.a}</button>
+                                        <button class="answer" id="answer-two">${questions[counter].answers.b}</button>
+                                    </div>
+                                    <div class="answer-row">
+                                        <button class="answer" id="answer-three">${questions[counter].answers.c}</button>
+                                        <button class="answer" id="answer-four">${questions[counter].answers.d}</button>
+                                    </div>
+                                </div>
+                            </div> `;
+
+    const buttons = document.querySelectorAll('.answer');
+    const correctAns = questions[counter].correctAnswer;
+
+    buttons.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            if (e.target.innerText.toLowerCase() === questions[counter].answers.a) {
+                e.target.innerText.toLowerCase() === correctAns ? nextQuestionCorrect(quizContent) : nextQuestionWrong(quizContent);
+                console.log('Button 1');
+            } else if (e.target.innerText.toLowerCase() === questions[counter].answers.b) {
+                e.target.innerText.toLowerCase() === correctAns ? nextQuestionCorrect(quizContent) : nextQuestionWrong(quizContent);
+                console.log('Button 2');
+            } else if (e.target.innerText.toLowerCase() === questions[counter].answers.c) {
+                e.target.innerText.toLowerCase() === correctAns ? nextQuestionCorrect(quizContent) : nextQuestionWrong(quizContent);
+                console.log('Button 3');
+            } else if (e.target.innerText.toLowerCase() === questions[counter].answers.d) {
+                e.target.innerText.toLowerCase() === correctAns ? nextQuestionCorrect(quizContent) : nextQuestionWrong(quizContent);
+                console.log('Button 4');
+            }
+        });
     });
-    
-    buttonTwo.addEventListener("click", function() {
-        if (buttonTwo.innerText.toLowerCase() === correctAns) {
-            // console.log("correct!");
-            nextQuestion();
-        } else {
-            // console.log("incorrect!");
-            nextQuestion(); 
-        }
-    }); 
-    
-    buttonThree.addEventListener("click", function() {
-        if (buttonThree.innerText.toLowerCase() === correctAns) {
-            // console.log("correct!");
-            nextQuestion();
-        } else {
-            // console.log("incorrect!");
-            nextQuestion();
-        }
-    }); 
-    
-    buttonFour.addEventListener("click", function() {
-        if (buttonFour.innerText.toLowerCase() === correctAns) {
-            // console.log("correct!");
-            nextQuestion();
-        } else {
-            // console.log("incorrect!");
-            nextQuestion();
-        }
-    }); 
 };
 
-function nextQuestion() {
-    counter = counter + 1;
-    console.log(counter);
-    reRunFillContents();
-};
+quizStartBtn.addEventListener('click', displayQuiz);
 
-function reRunFillContents() {
-    if (counter < totalQuestions) {
-        fillContents();
-    };
-};
+// if (buttonclickanswer === correctanswer) {
+//     remove quizContent innerHTML 
+//     add to counter & result
+//     run function to check counter is less than questions.length & then re-run addContents function
+// } else {
+//     remove quizContent innerHTML
+//     add to counter
+//     run function to check counter is less than questions.length & then re-run addContents function
+// }
 
-quizStartBtn.addEventListener("click", startQuiz);
+// if (e.target.innerText.toLowerCase() === correctAns.toLowerCase()) {
+//     alert("CORRECT")
+// } else if (e.target.innerText.toLowerCase() !== correctAns.toLowerCase()) {
+//     alert("INCORRECT TRY AGAIN NEXT TIME!")
+// }
 
-// buttonOne.addEventListener("click", function() {
-//     buttonOne.innerText.toLowerCase() === correctAns ? nextQuestion() : nextQuestion();
-// });
-
-// buttonTwo.addEventListener("click", function() {
-//     buttonTwo.innerText.toLowerCase() === correctAns ? nextQuestion() : nextQuestion();
-// });
-
-// buttonThree.addEventListener("click", function() {
-//     buttonThree.innerText.toLowerCase() === correctAns ? nextQuestion() : nextQuestion();
-// });
-
-// buttonFour.addEventListener("click", function() {
-//     buttonFour.innerText.toLowerCase() === correctAns ? nextQuestion() : nextQuestion();
-// });
+// let clickedBtn = e.target.innerText.toLowerCase();
+// let optionOne = questions[counter].answers.a;
+// let optionTwo = questions[counter].answers.b;
+// let optionThree = questions[counter].answers.c;
+// let optionFour = questions[counter].answers.d;
