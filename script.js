@@ -34,7 +34,7 @@ const questions = [
             d: "groudon"
         },
         correctAnswer: "giratina"
-    },
+    }, 
     {
         question: "Who is \#100 on the Pokedex?",
         answers: {
@@ -88,14 +88,15 @@ const questions = [
 ];
 
 function displayQuiz() {
-    quizStartBtn.remove();
+    quizStartBtn.style.display = 'none';
+    quizContent.classList.remove('zero-height');
     quizContent.style.display = 'block';
     addContents();
-}
+};
 
 function checkQuestions() {
-    counter < questions.length ? addContents() : alert(`End of quiz! ...FOR NOW - Results ${results}/8`);
-}
+    counter < questions.length ? addContents() : tryAgain();
+};
 
 function nextQuestionCorrect (quizContent) {
     alert('CORRECT! Next question...');
@@ -103,13 +104,24 @@ function nextQuestionCorrect (quizContent) {
     counter++;
     quizContent.innerHTML = '';
     checkQuestions();
-}
+};
 
 function nextQuestionWrong (quizContent) {
     alert('INCORRECT! Try the next question...');
     counter++;
     quizContent.innerHTML = '';
     checkQuestions();
+};
+
+function tryAgain() {
+    alert(`RESULTS: ${results}/${questions.length}`);
+
+    quizContent.style.display = 'none';
+    quizStartBtn.style.display = 'block';
+    quizStartBtn.innerText = 'Try again?';
+    results = 0;
+    counter = 0;
+    quizContent.innerHTML = '';
 }
 
 function addContents() {
@@ -153,25 +165,3 @@ function addContents() {
 };
 
 quizStartBtn.addEventListener('click', displayQuiz);
-
-// if (buttonclickanswer === correctanswer) {
-//     remove quizContent innerHTML 
-//     add to counter & result
-//     run function to check counter is less than questions.length & then re-run addContents function
-// } else {
-//     remove quizContent innerHTML
-//     add to counter
-//     run function to check counter is less than questions.length & then re-run addContents function
-// }
-
-// if (e.target.innerText.toLowerCase() === correctAns.toLowerCase()) {
-//     alert("CORRECT")
-// } else if (e.target.innerText.toLowerCase() !== correctAns.toLowerCase()) {
-//     alert("INCORRECT TRY AGAIN NEXT TIME!")
-// }
-
-// let clickedBtn = e.target.innerText.toLowerCase();
-// let optionOne = questions[counter].answers.a;
-// let optionTwo = questions[counter].answers.b;
-// let optionThree = questions[counter].answers.c;
-// let optionFour = questions[counter].answers.d;
